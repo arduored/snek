@@ -6,13 +6,12 @@ const score = document.getElementById("score")
 document.addEventListener("keyup", inputListener)
 
 const canvas = document.getElementById("game-canvas")
-const screenPause = document.getElementById("pause-screen")
 const ctx = canvas.getContext("2d")
 
 const WIDTH = 800
 const HEIGHT = 600
-let SPEED = 200
 const SIZE = 10
+let SPEED = 200
 
 const STATES = {
     MENU: 0,
@@ -26,6 +25,7 @@ let SCORE = 0
 
 let snek = new Snek(WIDTH, HEIGHT, SIZE, SPEED)
 const food = new Food(WIDTH, HEIGHT, SIZE)
+
 const direction = { x: 0, y: 1 }
 
 function inputListener(e) {
@@ -86,6 +86,7 @@ function play(timestamp) {
             snek.eat(food)
             food.update(WIDTH, HEIGHT, SIZE)
             SCORE += 10
+            SPEED = SPEED > 10 ? SPEED - 5 : 10
             refreshScore()
         }
 
@@ -94,7 +95,6 @@ function play(timestamp) {
         }
 
         food.draw(ctx)
-
         snek.update(direction)
         snek.draw(ctx)
 
@@ -104,7 +104,6 @@ function play(timestamp) {
 
 function toggleGameState() {
     GAME_STATE = GAME_STATE === 1 ? 2 : 1
-
     requestAnimationFrame(update)
 }
 
