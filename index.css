@@ -1,7 +1,23 @@
 body {
-    text-align: center;
+    margin-top: 50px;
+    background-color: #a4b0be;
 }
 
 canvas {
     border: 2px solid black;
+    background-color: #ced6e0;
+}
+
+#game-container {
+    width: 50%;
+    text-align: center;
+    margin: auto;
+}
+
+#game-info {
+    width: 12%;
+    float: right;
+    margin-top: 82px;
+    margin-right: 18%;
+    text-align: center;
 }
