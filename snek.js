@@ -43,4 +43,12 @@ export default class Snek {
             this.y < 0
         )
     }
+
+    biteSelf() {
+        const contact = this.tail.find(
+            (rim) => this.x === rim.x && this.y === rim.y
+        )
+
+        return contact
+    }
 }

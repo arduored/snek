@@ -11,7 +11,7 @@ const ctx = canvas.getContext("2d")
 
 const WIDTH = 800
 const HEIGHT = 600
-const SPEED = 200
+let SPEED = 200
 const SIZE = 10
 
 const STATES = {
@@ -24,7 +24,7 @@ const STATES = {
 let GAME_STATE = 0
 let SCORE = 0
 
-const snek = new Snek(WIDTH, HEIGHT, SIZE, SPEED)
+let snek = new Snek(WIDTH, HEIGHT, SIZE, SPEED)
 const food = new Food(WIDTH, HEIGHT, SIZE)
 const direction = { x: 0, y: 1 }
 
@@ -66,8 +66,8 @@ function inputListener(e) {
     }
 }
 
-function startGame() {
-    GAME_STATE = 1
+function resetScore() {
+    score.innerText = ""
 }
 
 function refreshScore() {
@@ -89,8 +89,8 @@ function play(timestamp) {
             refreshScore()
         }
 
-        if (snek.hitBorder(WIDTH, HEIGHT)) {
-            alert("GAME OVER !!!")
+        if (snek.hitBorder(WIDTH, HEIGHT) || snek.biteSelf()) {
+            GAME_STATE = 3
         }
 
         food.draw(ctx)
@@ -108,6 +108,16 @@ function toggleGameState() {
     requestAnimationFrame(update)
 }
 
+function resetGame() {
+    GAME_STATE = 0
+    SCORE = 0
+    SPEED = 200
+    ctx.clearRect(0, 0, WIDTH, HEIGHT)
+    resetScore()
+    snek = new Snek(WIDTH, HEIGHT, SIZE, SPEED)
+    food.update(WIDTH, HEIGHT, SIZE)
+}
+
 let lastTime = 0
 let elapsedTime = 0
 
@@ -120,9 +130,8 @@ function update(timestamp) {
             //display pause screen
             break
         case 3:
-            GAME_STATE = 0
-            SCORE = 0
             alert("GAME OVER!!")
+            resetGame()
             break
         default:
             //display menu
