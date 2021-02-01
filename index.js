@@ -5,6 +5,7 @@ const score = document.getElementById("score")
 const overlay = document.getElementById("overlay")
 
 document.addEventListener("keyup", inputListener)
+overlay.style.display = "none"
 
 const canvas = document.getElementById("game-canvas")
 const ctx = canvas.getContext("2d")
@@ -119,6 +120,12 @@ function resetGame() {
     food.update(WIDTH, HEIGHT, SIZE)
 }
 
+function displayMenu() {
+    ctx.font = "30px Arial"
+    ctx.textAlign = "center"
+    ctx.fillText("PRESS `SPACE` TO PLAY", canvas.width / 2, canvas.height / 2)
+}
+
 let lastTime = 0
 let elapsedTime = 0
 
@@ -128,7 +135,6 @@ function update(timestamp) {
             play(timestamp)
             break
         case 2:
-            //display pause screen
             overlay.style.display = "block"
             break
         case 3:
@@ -136,7 +142,7 @@ function update(timestamp) {
             resetGame()
             break
         default:
-            //display menu
+            displayMenu()
             break
     }
 
@@ -144,3 +150,8 @@ function update(timestamp) {
 }
 
 requestAnimationFrame(update)
+
+//TODO: Refactor the code
+//TODO: Ehance display ( center pause text, colors ... )
+//TODO: Add my name and a link to my github / gitlab
+//TODO: Add obstacles
