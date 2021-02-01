@@ -17,6 +17,6 @@ export default class Food {
 
     getRandomCoordinate(max, size) {
         max = Math.floor(max)
-        return Math.floor(Math.random() * max + 1) * size
+        return Math.floor(Math.random() * max) * size
     }
 }

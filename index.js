@@ -10,8 +10,8 @@ overlay.style.display = "none"
 const canvas = document.getElementById("game-canvas")
 const ctx = canvas.getContext("2d")
 
-const WIDTH = 800
-const HEIGHT = 600
+const WIDTH = canvas.width
+const HEIGHT = canvas.height
 const SIZE = 10
 let SPEED = 200
 
@@ -151,6 +151,7 @@ function update(timestamp) {
 
 requestAnimationFrame(update)
 
+//TODO: Fix quick u-turn bug
 //TODO: Refactor the code
 //TODO: Ehance display ( center pause text, colors ... )
 //TODO: Add my name and a link to my github / gitlab
