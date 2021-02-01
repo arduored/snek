@@ -8,6 +8,22 @@ canvas {
     background-color: #ced6e0;
 }
 
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+#overlay > * {
+    margin-top: 20%;
+    color: white;
+}
+
 #game-container {
     width: 50%;
     text-align: center;

@@ -2,6 +2,7 @@ import Snek from "./snek.js"
 import Food from "./food.js"
 
 const score = document.getElementById("score")
+const overlay = document.getElementById("overlay")
 
 document.addEventListener("keyup", inputListener)
 
@@ -104,6 +105,7 @@ function play(timestamp) {
 
 function toggleGameState() {
     GAME_STATE = GAME_STATE === 1 ? 2 : 1
+    overlay.style.display = GAME_STATE === 1 ? "none" : "block"
     requestAnimationFrame(update)
 }
 
@@ -127,6 +129,7 @@ function update(timestamp) {
             break
         case 2:
             //display pause screen
+            overlay.style.display = "block"
             break
         case 3:
             alert("GAME OVER!!")
