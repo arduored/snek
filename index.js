@@ -60,8 +60,11 @@ function inputListener(e) {
                 direction.y = 0
             }
             break
-        case 32:
+        case 32: // SPACE
             toggleGameState()
+            break
+        case 13: // ENTER
+            overlay.style.display = "none"
             break
         default:
             console.warn(`${e.keyCode} is not a supported input`)
@@ -135,10 +138,13 @@ function update(timestamp) {
             play(timestamp)
             break
         case 2:
+            overlay.innerHTML = "<h1>PAUSE</h1>"
             overlay.style.display = "block"
             break
         case 3:
-            alert("GAME OVER!!")
+            overlay.innerHTML =
+                "<h1>GAME OVER !!!</h1> <h3>PRESS `ENTER` FOR MENU</h3><h3>PRESS `SPACE` TO RESTART</h3>"
+            overlay.style.display = "block"
             resetGame()
             break
         default:
