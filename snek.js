@@ -22,11 +22,11 @@ export default class Snek {
     }
 
     draw(ctx) {
-        ctx.fillStyle = "#F00"
+        ctx.fillStyle = "#e84393"
         ctx.fillRect(this.x, this.y, this.size, this.size)
 
         for (const rim of this.tail) {
-            ctx.fillStyle = "#128"
+            ctx.fillStyle = "#81ecec"
             ctx.fillRect(rim.x, rim.y, this.size, this.size)
         }
     }

@@ -159,6 +159,4 @@ requestAnimationFrame(update)
 
 //TODO: Fix quick u-turn bug
 //TODO: Refactor the code
-//TODO: Ehance display ( center pause text, colors ... )
-//TODO: Add my name and a link to my github / gitlab
 //TODO: Add obstacles

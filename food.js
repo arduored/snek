@@ -11,7 +11,7 @@ export default class Food {
     }
 
     draw(ctx) {
-        ctx.fillStyle = "#78e08f"
+        ctx.fillStyle = "#2ecc71"
         ctx.fillRect(this.x, this.y, this.size, this.size)
     }
 
