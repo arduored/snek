@@ -1,5 +1,5 @@
-import Snek from "./snek.js"
-import Food from "./food.js"
+import Snek from "./components/snek.js"
+import Food from "./components/food.js"
 
 const score = document.getElementById("score")
 const overlay = document.getElementById("overlay")
@@ -24,41 +24,41 @@ const STATES = {
 
 let GAME_STATE = 0
 let SCORE = 0
+let DIRECTION = { x: 0, y: 1 }
 
 let snek = new Snek(WIDTH, HEIGHT, SIZE)
 const food = new Food(WIDTH, HEIGHT, SIZE)
 
-const direction = { x: 0, y: 1 }
 let lastInput = 0
 function inputListener(e) {
     if (e.timeStamp - lastInput <= SPEED) return
     switch (e.keyCode) {
         case 87: // W
         case 38:
-            if (direction.y !== 1) {
-                direction.x = 0
-                direction.y = -1
+            if (DIRECTION.y !== 1) {
+                DIRECTION.x = 0
+                DIRECTION.y = -1
             }
             break
         case 65: // A
         case 37:
-            if (direction.x !== 1) {
-                direction.x = -1
-                direction.y = 0
+            if (DIRECTION.x !== 1) {
+                DIRECTION.x = -1
+                DIRECTION.y = 0
             }
             break
         case 83: // S
         case 40:
-            if (direction.y !== -1) {
-                direction.x = 0
-                direction.y = 1
+            if (DIRECTION.y !== -1) {
+                DIRECTION.x = 0
+                DIRECTION.y = 1
             }
             break
         case 68: // D
         case 39:
-            if (direction.x !== -1) {
-                direction.x = 1
-                direction.y = 0
+            if (DIRECTION.x !== -1) {
+                DIRECTION.x = 1
+                DIRECTION.y = 0
             }
             break
         case 32: // SPACE
@@ -102,7 +102,7 @@ function play(timestamp) {
         }
 
         food.draw(ctx)
-        snek.update(direction)
+        snek.update(DIRECTION)
         snek.draw(ctx)
 
         elapsedTime = 0
@@ -119,6 +119,7 @@ function resetGame() {
     GAME_STATE = 0
     SCORE = 0
     SPEED = 200
+    DIRECTION = { x: 0, y: 1 }
     ctx.clearRect(0, 0, WIDTH, HEIGHT)
     resetScore()
     snek = new Snek(WIDTH, HEIGHT, SIZE)
@@ -128,6 +129,7 @@ function resetGame() {
 function displayMenu() {
     ctx.font = "30px Arial"
     ctx.textAlign = "center"
+    ctx.fillStyle = "#000"
     ctx.fillText("PRESS `SPACE` TO PLAY", canvas.width / 2, canvas.height / 2)
 }
 
