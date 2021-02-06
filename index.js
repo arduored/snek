@@ -160,5 +160,3 @@ function update(timestamp) {
 }
 
 requestAnimationFrame(update)
-
-//TODO: Refactor the code
