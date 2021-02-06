@@ -29,8 +29,9 @@ let snek = new Snek(WIDTH, HEIGHT, SIZE, SPEED)
 const food = new Food(WIDTH, HEIGHT, SIZE)
 
 const direction = { x: 0, y: 1 }
-
+let lastInput = 0
 function inputListener(e) {
+    if (e.timeStamp - lastInput <= SPEED) return
     switch (e.keyCode) {
         case 87: // W
         case 38:
@@ -69,6 +70,7 @@ function inputListener(e) {
         default:
             console.warn(`${e.keyCode} is not a supported input`)
     }
+    lastInput = e.timeStamp
 }
 
 function resetScore() {
@@ -85,7 +87,7 @@ function play(timestamp) {
     elapsedTime += delta
     refreshScore()
 
-    if (elapsedTime > SPEED) {
+    if (elapsedTime >= SPEED) {
         ctx.clearRect(0, 0, WIDTH, HEIGHT)
         if (snek.x === food.x && snek.y === food.y) {
             snek.eat(food)
@@ -157,6 +159,5 @@ function update(timestamp) {
 
 requestAnimationFrame(update)
 
-//TODO: Fix quick u-turn bug
 //TODO: Refactor the code
 //TODO: Add obstacles
