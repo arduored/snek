@@ -1,5 +1,5 @@
 export default class Snek {
-    constructor(gameWidth, gameHeight, gameObjectSize, gameSpeed) {
+    constructor(gameWidth, gameHeight, gameObjectSize) {
         this.x = gameWidth / 2
         this.y = gameHeight / 2
         this.size = gameObjectSize
@@ -45,10 +45,6 @@ export default class Snek {
     }
 
     biteSelf() {
-        const contact = this.tail.find(
-            (rim) => this.x === rim.x && this.y === rim.y
-        )
-
-        return contact
+        return this.tail.find((rim) => this.x === rim.x && this.y === rim.y)
     }
 }

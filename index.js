@@ -25,7 +25,7 @@ const STATES = {
 let GAME_STATE = 0
 let SCORE = 0
 
-let snek = new Snek(WIDTH, HEIGHT, SIZE, SPEED)
+let snek = new Snek(WIDTH, HEIGHT, SIZE)
 const food = new Food(WIDTH, HEIGHT, SIZE)
 
 const direction = { x: 0, y: 1 }
@@ -121,8 +121,8 @@ function resetGame() {
     SPEED = 200
     ctx.clearRect(0, 0, WIDTH, HEIGHT)
     resetScore()
-    snek = new Snek(WIDTH, HEIGHT, SIZE, SPEED)
-    food.update(WIDTH, HEIGHT, SIZE)
+    snek = new Snek(WIDTH, HEIGHT, SIZE)
+    food.update()
 }
 
 function displayMenu() {
@@ -160,4 +160,3 @@ function update(timestamp) {
 requestAnimationFrame(update)
 
 //TODO: Refactor the code
-//TODO: Add obstacles

@@ -1,13 +1,15 @@
 export default class Food {
-    constructor(width, height, size) {
-        this.x = this.getRandomCoordinate(width / 10, size)
-        this.y = this.getRandomCoordinate(height / 10, size)
-        this.size = size
+    constructor(gameWidth, gameHeight, gameObjectSize) {
+        this.size = gameObjectSize
+        this.xRange = gameWidth / 10
+        this.yRange = gameHeight / 10
+        this.x = this.getRandomCoordinate(this.xRange)
+        this.y = this.getRandomCoordinate(this.yRange)
     }
 
-    update(width, height, size) {
-        this.x = this.getRandomCoordinate(width / 10, size)
-        this.y = this.getRandomCoordinate(height / 10, size)
+    update() {
+        this.x = this.getRandomCoordinate(this.xRange, this.size)
+        this.y = this.getRandomCoordinate(this.yRange, this.size)
     }
 
     draw(ctx) {
@@ -15,8 +17,8 @@ export default class Food {
         ctx.fillRect(this.x, this.y, this.size, this.size)
     }
 
-    getRandomCoordinate(max, size) {
+    getRandomCoordinate(max) {
         max = Math.floor(max)
-        return Math.floor(Math.random() * max) * size
+        return Math.floor(Math.random() * max) * this.size
     }
 }
