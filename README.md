@@ -4,7 +4,7 @@
 
 ### CONTROLS
 
-To control the snake you may use the typical `W`, `A`, `S`, `D` keys or the directional arrows.
+To control the snake you may use the typical `W` `A` `S` `D` keys or the directional arrows.
 
 ### PLAY THE GAME
 
