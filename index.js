@@ -1,8 +1,8 @@
-import Game from "./components/game"
+import Game from "./components/game.js"
 import Snek from "./components/snek.js"
 import Food from "./components/food.js"
 
-document.addEventListener("keyup", inputListener)
+document.addEventListener("keydown", inputListener)
 
 const canvas = document.getElementById("game-canvas")
 const game = new Game(canvas)
