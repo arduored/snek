@@ -18,8 +18,6 @@ Click right [here](https://arduored.github.io/snek/) !
 
 ### TO-DO
 
--   [ ] Extract game logic into a class
-
 -   [ ] Configure Snowpack to exclude some files on build
 
 -   [ ] Congifure Snowpack to uglify on build

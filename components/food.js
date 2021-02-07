@@ -1,8 +1,8 @@
 export default class Food {
-    constructor(gameWidth, gameHeight, gameObjectSize) {
-        this.size = gameObjectSize
-        this.xRange = gameWidth / 10
-        this.yRange = gameHeight / 10
+    constructor(game) {
+        this.size = game.size
+        this.xRange = game.width / 10
+        this.yRange = game.height / 10
         this.x = this.getRandomCoordinate(this.xRange)
         this.y = this.getRandomCoordinate(this.yRange)
     }

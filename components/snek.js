@@ -1,24 +1,16 @@
 export default class Snek {
-    constructor(gameWidth, gameHeight, gameObjectSize) {
-        this.x = gameWidth / 2
-        this.y = gameHeight / 2
-        this.size = gameObjectSize
+    constructor(game) {
+        this.x = game.width / 2
+        this.y = game.height / 2
+        this.size = game.size
         this.tail = [
-            { x: gameWidth / 2, y: gameHeight / 2 - gameObjectSize },
-            { x: gameWidth / 2, y: gameHeight / 2 - gameObjectSize * 2 },
+            { x: game.width / 2, y: game.height / 2 - game.size },
+            { x: game.width / 2, y: game.height / 2 - game.size * 2 },
         ]
     }
 
-    update(direction) {
-        let previous = { x: this.x, y: this.y }
-        for (let i = 0; i < this.tail.length; i++) {
-            const current = this.tail[i]
-            this.tail[i] = { x: previous.x, y: previous.y }
-            previous = current
-        }
-
-        this.x += this.size * direction.x
-        this.y += this.size * direction.y
+    biteSelf() {
+        return this.tail.find((rim) => this.x === rim.x && this.y === rim.y)
     }
 
     draw(ctx) {
@@ -35,16 +27,34 @@ export default class Snek {
         this.tail.push(food)
     }
 
-    hitBorder(gameWidth, gameHeight) {
+    hitBorder(game) {
         return (
-            this.x + 10 > gameWidth ||
+            this.x + 10 > game.width ||
             this.x < 0 ||
-            this.y + 10 > gameHeight ||
+            this.y + 10 > game.height ||
             this.y < 0
         )
     }
 
-    biteSelf() {
-        return this.tail.find((rim) => this.x === rim.x && this.y === rim.y)
+    reset(game) {
+        this.x = game.width / 2
+        this.y = game.height / 2
+        this.size = game.size
+        this.tail = [
+            { x: game.width / 2, y: game.height / 2 - game.size },
+            { x: game.width / 2, y: game.height / 2 - game.size * 2 },
+        ]
+    }
+
+    update(direction) {
+        let previous = { x: this.x, y: this.y }
+        for (let i = 0; i < this.tail.length; i++) {
+            const current = this.tail[i]
+            this.tail[i] = { x: previous.x, y: previous.y }
+            previous = current
+        }
+
+        this.x += this.size * direction.x
+        this.y += this.size * direction.y
     }
 }
