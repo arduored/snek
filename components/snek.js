@@ -1,4 +1,5 @@
 export default class Snek {
+    EAT_SOUND = new Audio("assets/eat_sound.wav")
     constructor(game) {
         this.x = game.width / 2
         this.y = game.height / 2
@@ -25,6 +26,7 @@ export default class Snek {
 
     eat(food) {
         this.tail.push(food)
+        this.EAT_SOUND.play()
     }
 
     hitBorder(game) {

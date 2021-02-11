@@ -8,7 +8,8 @@ export default class Game {
         PAUSE: 2,
         GAMEOVER: 3,
     }
-
+    GAME_OVER_SOUND = new Audio("assets/game_over.wav")
+    gameOverCalled = false
     ui = {
         score: document.getElementById("score"),
         overlay: document.getElementById("overlay"),
@@ -44,10 +45,15 @@ export default class Game {
     }
 
     over(snek, food) {
-        this.ui.overlay.innerHTML =
-            "<h1>GAME OVER !!!</h1> <h3>PRESS `ENTER` FOR MENU</h3><h3>PRESS `SPACE` TO RESTART</h3>"
-        this.ui.overlay.style.display = "block"
-        this.reset(snek, food)
+        if (!this.gameOverCalled) {
+            this.GAME_OVER_SOUND.play()
+            this.ui.overlay.innerHTML =
+                "<h1>GAME OVER !!!</h1> <h3>PRESS `ENTER` FOR MENU</h3><h3>PRESS `SPACE` TO RESTART</h3>"
+            this.ui.overlay.style.display = "block"
+            this.reset(snek, food)
+            this.GAME_OVER_SOUND.stop
+        }
+        this.gameOverCalled = true
     }
 
     refreshScore() {
@@ -74,6 +80,7 @@ export default class Game {
     }
 
     update(delta, snek, food) {
+        this.gameOverCalled = false
         this.elapsedTime += delta
         this.refreshScore()
         if (this.elapsedTime >= this.speed) {
