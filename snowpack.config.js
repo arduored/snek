@@ -1,7 +1,8 @@
 // snowpack.config.js
 module.exports = {
     buildOptions: {
-        minify: false,
+        minify: true,
+        clean: true,
     },
     plugins: [
         [
@@ -9,6 +10,7 @@ module.exports = {
             {
                 terserOptions: {
                     compress: {
+                        module: true,
                         arguments: true,
                         passes: 2,
                         unsafe_arrows: true,
